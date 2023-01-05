@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is Chat application</h1>
+
+    <h1>Users Connected: <span id="count"> </span></h1>
+
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script>
+        let count = 0;
+        const socketClient = io();  
+        socketClient.on("connection",()=>{   //socketClient is listing event from server
+            count++;
+            document.getElementById("count").innerText=count;
+        })
+        
+        socketClient.on("disconnection",()=>{
+            count--;
+            document.getElementById("count").innerText= count;
+        })
+   
+   </script>
+</body>
+</html>
